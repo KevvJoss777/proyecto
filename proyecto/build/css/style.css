@@ -105,7 +105,10 @@ label {
 }
 
 .error{
-    color: #ff4d4d;
+    color: #ffffff;
+    background: #e74c3c;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
     font-size: 14px;
-    margin: 5px 0 10px 0;
 }

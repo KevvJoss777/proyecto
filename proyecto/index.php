@@ -12,9 +12,11 @@ $libros = obtener_libros();
 <body>
 
 <h1>Registro de Libros</h1>
+
 <a href="crear.php">Agregar Libro</a>
 
 <table>
+
 <tr>
 <th>ID</th>
 <th>Título</th>
@@ -22,18 +24,42 @@ $libros = obtener_libros();
 <th>Acciones</th>
 </tr>
 
+<?php if($libros->num_rows > 0): ?>
+
 <?php while($libro = $libros->fetch_assoc()): ?>
+
 <tr>
-<td><?php echo $libro['id']; ?></td>
-<td><?php echo $libro['titulo']; ?></td>
-<td><?php echo $libro['autor']; ?></td>
+
+<td><?php echo htmlspecialchars($libro['id']); ?></td>
+
+<td><?php echo htmlspecialchars($libro['titulo']); ?></td>
+
+<td><?php echo htmlspecialchars($libro['autor']); ?></td>
+
 <td>
+
 <a href="editar.php?id=<?php echo $libro['id']; ?>">Editar</a>
-<a href="eliminar.php?id=<?php echo $libro['id']; ?>">Eliminar</a>
+
+<a href="eliminar.php?id=<?php echo $libro['id']; ?>"
+onclick="return confirm('¿Seguro que deseas eliminar este libro?');">
+Eliminar
+</a>
+
 </td>
+
 </tr>
+
 <?php endwhile; ?>
 
+<?php else: ?>
+
+<tr>
+<td colspan="4">No hay libros registrados</td>
+</tr>
+
+<?php endif; ?>
+
 </table>
+
 </body>
 </html>
